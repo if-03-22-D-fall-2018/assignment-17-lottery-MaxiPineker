@@ -22,7 +22,12 @@ bool init_lottery(const char* csv_file, char csv_seperator){
   return stream != 0;
 }
 bool get_tip(int tip_number, int tip[TIP_SIZE]){
- return false;
+  /*
+  count = 0;
+  while (count < tip_number) {
+    fgets(count, MAX_LINE_LEN, )
+  }
+  */
 }
 bool set_drawing(int drawing_numbers[TIP_SIZE]){
  return false;
