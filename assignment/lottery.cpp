@@ -24,7 +24,7 @@ char _seperator;
 int _last_drawing[TIP_SIZE];
 
 bool is_empty(int drawing_numbers[]);
-bool contains_digit(int tip[TIP_SIZE], int digit);
+
 
 bool init_lottery(const char *csv_file, char csv_separator)
 {
@@ -108,11 +108,4 @@ int get_tip_result(int tip_number){
 }
 int get_right_tips_count(int right_digits_count){
  return 0;
-}
-
-
-
-bool contains_digit(int tip[TIP_SIZE], int digit)
-{
-  return false;
 }
