@@ -25,7 +25,6 @@ int _line_number = 0;
 int _last_drawing[TIP_SIZE];
 
 int get_line_numbers();
-bool is_tip_valid(int tip[TIP_SIZE]);
 bool contains_digit(int tip[TIP_SIZE], int digit);
 
 bool init_lottery(const char *csv_file, char csv_separator)
@@ -71,7 +70,17 @@ bool get_tip(int tip_number, int tip[TIP_SIZE])
     return true;
 }
 bool set_drawing(int drawing_numbers[TIP_SIZE]){
- return false;
+  for (int i = 0; i < TIP_SIZE; i++) {
+    if (drawing_numbers[i] <= 0 || drawing_numbers[i] > 45)
+    {
+        return false;
+    }
+  }
+  for (int i = 0; i < TIP_SIZE; i++)
+  {
+      _last_drawing[i] = drawing_numbers[i];
+  }
+  return true;
 }
 int get_tip_result(int tip_number){
  return 0;
@@ -82,23 +91,21 @@ int get_right_tips_count(int right_digits_count){
 
 int get_line_numbers()
 {
-  int previous = ftell(_stream); //Save the current position in the stream for later
-rewind(_stream);               //rewind to the beginning
-int amount_of_lines = 1;       //set the amount of lines to 1 because there is at least 1 line
-while (!feof(_stream))
-{ //run through the file until it ends
-    if (fgetc(_stream) == '\n')
-    { //if the line ends -> increase amount_of_lines
-        amount_of_lines++;
-    }
+  int previous = ftell(_stream);
+  rewind(_stream);
+  int amount_of_lines = 1;
+  while (!feof(_stream))
+  {
+      if (fgetc(_stream) == '\n')
+      {
+          amount_of_lines++;
+      }
+  }
+  fseek(_stream, previous, SEEK_SET);
+  return amount_of_lines;
 }
-fseek(_stream, previous, SEEK_SET); //go back to the previous position
-return amount_of_lines;
-}
-bool is_tip_valid(int tip[TIP_SIZE])
-{
-  return false;
-}
+
+
 bool contains_digit(int tip[TIP_SIZE], int digit)
 {
   return false;
