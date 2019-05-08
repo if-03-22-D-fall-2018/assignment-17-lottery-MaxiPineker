@@ -107,5 +107,17 @@ int get_tip_result(int tip_number){
   return count;
 }
 int get_right_tips_count(int right_digits_count){
- return 0;
+  if (right_digits_count < 0 || right_digits_count > TIP_SIZE || is_empty(_last_drawing)) {
+    return -1;
+  }
+ int count = 0;
+ int temp = 0;
+ for (int i = 0; i < 44; ++i) {
+     temp = get_tip_result(i);
+     if (temp == right_digits_count)
+     {
+         count++;
+     }
+ }
+return count;
 }
